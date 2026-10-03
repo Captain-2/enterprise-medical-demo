@@ -269,13 +269,27 @@
             <div class="admin-section">
                 <h3>Audit Log (History)</h3>
                 <div style="display:flex; gap:10px; margin-bottom:15px;">
-                    <input type="text" id="search-history" placeholder="Search by name or cart..." onkeyup="renderHistory()">
-                    <select id="filter-history" onchange="renderHistory()">
+                    <input type="text" id="search-history" placeholder="Search by name or cart..." onkeyup="renderHistory(true)">
+                    <select id="filter-history" onchange="renderHistory(true)">
                         <option value="24">Last 24 Hours</option>
                         <option value="168">Last 7 Days</option>
                         <option value="2160">Last 3 Months</option>
                     </select>
                 </div>
+                <div style="max-height: 480px; overflow-y: auto; border: 1px solid #eee; border-radius: 8px; margin-bottom: 10px;">
+                    <table style="margin:0; width:100%;">
+                        <thead style="position: sticky; top: 0; background: var(--dark-bg); color: white; z-index: 10;">
+                            <tr><th>Time</th><th>Action</th><th>Cart</th><th>Associate</th></tr>
+                        </thead>
+                        <tbody id="admin-history-list"></tbody>
+                    </table>
+                </div>
+                <div style="display:flex; justify-content:space-between; align-items:center; background:#f8f9fa; padding:10px; border-radius:8px; border:1px solid #ddd;">
+                    <button class="btn-outline" style="width:auto; padding:6px 15px; margin:0;" onclick="changeHistoryPage(-1)">◀ Prev</button>
+                    <span id="history-page-info" style="font-weight:bold; color:var(--crown-blue);">Page 1 of 1</span>
+                    <button class="btn-outline" style="width:auto; padding:6px 15px; margin:0;" onclick="changeHistoryPage(1)">Next ▶</button>
+                </div>
+            </div>
                 <div style="max-height: 480px; overflow-y: auto; border: 1px solid #eee; border-radius: 8px;">
                     <table style="margin:0; width:100%;">
                         <thead style="position: sticky; top: 0; background: var(--dark-bg); color: white; z-index: 10;">
@@ -307,7 +321,8 @@
         let currentUser = null;
         let initialLoad = true;
         let cartToClose = null;
-
+        let currentHistoryPage = 1;
+        
         dbRef.onSnapshot((doc) => {
             if (doc.exists) {
                 db = doc.data();
@@ -717,18 +732,36 @@
             saveDB(); document.getElementById('new-user-name').value='';
         }
 
-        function renderHistory() {
+function renderHistory(resetPage = false) {
+            if (resetPage) currentHistoryPage = 1;
             const term = document.getElementById('search-history').value.toLowerCase();
             const hours = parseInt(document.getElementById('filter-history').value);
             const cutoff = Date.now() - (hours * 60 * 60 * 1000);
+            
             let filtered = db.history ? db.history.filter(h => h.time >= cutoff && (h.by.toLowerCase().includes(term) || h.cartName.toLowerCase().includes(term))) : [];
+            
+            const totalPages = Math.ceil(filtered.length / 50) || 1;
+            if (currentHistoryPage > totalPages) currentHistoryPage = totalPages;
+            if (currentHistoryPage < 1) currentHistoryPage = 1;
+            
+            const startIndex = (currentHistoryPage - 1) * 50;
+            const paginatedItems = filtered.slice(startIndex, startIndex + 50);
+
             const hList = document.getElementById('admin-history-list'); hList.innerHTML = '';
-            filtered.forEach(h => {
+            paginatedItems.forEach(h => {
                 let d = new Date(h.time);
                 let picBtn = h.pic ? `<br><button class="btn-outline" style="padding:2px 8px; font-size:0.75rem; margin-top:5px; background:white;" onclick="document.getElementById('lightbox-img').src='${h.pic}'; document.getElementById('lightbox').style.display='flex'">📸 View</button>` : '';
                 hList.innerHTML += `<tr><td style="font-size:0.8rem">${d.getMonth()+1}/${d.getDate()} ${d.getHours()}:${d.getMinutes().toString().padStart(2,'0')}</td>
                 <td><strong>${h.action}</strong>${picBtn}</td><td>${h.cartName}</td><td>${h.by}</td></tr>`;
             });
+            
+            const pageInfo = document.getElementById('history-page-info');
+            if(pageInfo) pageInfo.innerText = `Page ${currentHistoryPage} of ${totalPages}`;
+        }
+
+        function changeHistoryPage(dir) {
+            currentHistoryPage += dir;
+            renderHistory(false);
         }
 
         function executeNuke() {
