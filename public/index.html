@@ -548,6 +548,11 @@
                                     <br><small style="font-weight:normal; text-decoration:underline; cursor:pointer; display:inline-block; margin-top:8px;" onclick="undoStat('${cart.id}')">(Tap to Undo Status)</small>
                                 </div>
                                 <div class="action-group" style="display:${actDisp}; flex-direction:column; gap:10px;">
+
+${(db.callLogs && db.callLogs[cart.id]) ? `<div style="color:#28a745; font-size:0.85rem; font-weight:bold; margin-bottom:8px; text-align:center;">✅ Run Logged at ${new Date(db.callLogs[cart.id]).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</div>` : ''}
+                <button class="btn-call" style="margin-bottom: 10px; width: 100%;" onclick="logEmergencyRun('${cart.id}')">Call Run</button>
+
+                <div class="action-group" style="display:${actDisp}; flex-direction:column; gap:10px;">
                                     
                                     <button class="btn-report" onclick="document.getElementById('report-zone-${cart.id}').style.display='flex'; this.style.display='none';">⚠ Report Issue</button>
                                     
@@ -566,7 +571,7 @@
                                     </div>
 
   ${(db.callLogs && db.callLogs[cart.id]) ? `<div style="color:#28a745; font-size:0.85rem; font-weight:bold; margin-bottom:8px; text-align:center;">✅ Run Logged at ${new Date(db.callLogs[cart.id]).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</div>` : ''}
-        <button class="btn-call" onclick="logEmergencyRun('${cart.id}')">Call Run</button>
+        
                                     
                                     ${reqHTML}
                                     <button class="btn-complete" onclick="completeCart('${cart.id}', ${cart.photoRequired ? 'true' : 'false'})">✓ Complete</button>
