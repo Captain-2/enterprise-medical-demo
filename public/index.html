@@ -554,7 +554,7 @@
                                         <input type="hidden" id="tk-pic-${cart.id}">
                                     </div>
 
-                                   ${db.cartStates[cart.id]?.calledTime ? `<div style="color:#28a745; font-size:0.85rem; font-weight:bold; margin-bottom:8px; text-align:center;">✅ Run Logged at ${new Date(db.cartStates[cart.id].calledTime).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</div>` : ''}
+  ${(db.callLogs && db.callLogs[cart.id]) ? `<div style="color:#28a745; font-size:0.85rem; font-weight:bold; margin-bottom:8px; text-align:center;">✅ Run Logged at ${new Date(db.callLogs[cart.id]).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</div>` : ''}
         <button class="btn-call" onclick="logEmergencyRun('${cart.id}')">Call Run</button>
                                     
                                     ${reqHTML}
@@ -625,20 +625,17 @@
         }
 
  function logEmergencyRun(cartId) {
-            let state = db.cartStates[cartId] || { status: 'Available' };
+            // Create a separate tracking folder if it doesn't exist yet
+            if (!db.callLogs) db.callLogs = {};
             
-            // Stamp the time for the UI checkmark
-            state.calledTime = Date.now();
-            state.calledBy = currentUser ? currentUser.name : "Unknown";
-            db.cartStates[cartId] = state;
+            // Stamp the exact time in our new safe folder
+            db.callLogs[cartId] = Date.now();
 
-            // Use your app's built-in logAction function instead of manually building the history array!
+            // Send the log to history
             logAction("Emergency Run Called", cartId);
             
             saveDB(); 
-            // STOP HERE. No reload, no render function. Firebase will paint the checkmark automatically!
         }
-
         function subTicket(id) {
             const desc = document.getElementById(`tk-desc-${id}`).value;
             if(!desc.trim()) return showToast("Type what is broken!", true);
