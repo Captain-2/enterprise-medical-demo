@@ -624,29 +624,19 @@
             }
         }
 
-        function logEmergencyRun(cartId) {
-            // Get current state or create a blank one
+ function logEmergencyRun(cartId) {
             let state = db.cartStates[cartId] || { status: 'Available' };
             
-            // Stamp the time for the visual UI badge
+            // Stamp the time for the UI checkmark
             state.calledTime = Date.now();
             state.calledBy = currentUser ? currentUser.name : "Unknown";
             db.cartStates[cartId] = state;
 
-            // Push the official CYA log to the history tab for management
-            db.history.unshift({
-                time: Date.now(),
-                action: "Emergency Run Logged",
-                cartName: cartId,
-                by: currentUser ? currentUser.name : "Unknown"
-            });
-
-            saveDB(); // Saves to Firebase
+            // Use your app's built-in logAction function instead of manually building the history array!
+            logAction("Emergency Run Called", cartId);
             
-            // Re-render the screen so the green checkmark appears instantly!
-            // Note: Look at your 'setStat' function to see what render function it calls at the very end. 
-            // It's probably render(), renderFloors(), or init(). Add that exact function call right here!
-            location.reload(); // Temporary fallback: this will just refresh the page instantly to show the badge if you don't know the render function name.
+            saveDB(); 
+            // STOP HERE. No reload, no render function. Firebase will paint the checkmark automatically!
         }
 
         function subTicket(id) {
