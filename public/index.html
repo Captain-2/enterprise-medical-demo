@@ -503,6 +503,12 @@
             floors.forEach(floor => {
                 let floorCarts = db.carts ? db.carts.filter(c => c.floor === floor) : [];
                 let safeFloorId = floor.replace(/\s+/g, '-');
+
+            let allCartsDone = floorCarts.length > 0 && floorCarts.every(c => 
+            db.cartStates[c.id]?.status === 'Complete' || db.cartStates[c.id]?.status === 'Completed'
+        );
+        let floorTitle = allCartsDone ? `✅ ${floor}` : floor;
+        let floorBg = allCartsDone ? `background-color: #198754; color: white;` : ``;    
                 
                 let html = `<details id="floor-${safeFloorId}"><summary>${floor} <span style="font-weight:normal; font-size:0.9rem; color:#94a3b8;">(${floorCarts.length} carts)</span></summary><div style="padding:10px; background:#f1f5f9;">`;
                 
@@ -527,9 +533,15 @@
                         </div>
                     ` : '';
 
-                    html += `
-                        <details class="cart-details" id="card-${cart.id}">
-                            <summary>${cart.name}</summary>
+  let isCartDone = (db.cartStates[cart.id]?.status === 'Complete' || db.cartStates[cart.id]?.status === 'Completed');
+        let cartTitle = isCartDone ? `✅ ${cart.name}` : cart.name;
+        let cartBg = isCartDone ? `background-color: #d1e7dd; color: #0f5132; font-weight: bold;` : ``;
+
+        html += `
+            <details class="cart-details" id="card-${cart.id}">
+            <summary style="${cartBg}">${cartTitle}</summary>
+            
+        html += `<summary style="${cartBg}">${cartTitle}</summary>`;
                             <div class="cart-content">
                                 ${doorHTML}
                                 <div class="status-badge" style="display:${statDisp}; background:${bg}; color:${color};">
