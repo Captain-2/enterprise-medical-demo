@@ -554,7 +554,8 @@
                                         <input type="hidden" id="tk-pic-${cart.id}">
                                     </div>
 
-                                    <button class="btn-call" onclick="setStat('${cart.id}','Call Run')">Call Run</button>
+                                   ${db.cartStates[cart.id]?.calledTime ? `<div style="color:#28a745; font-size:0.85rem; font-weight:bold; margin-bottom:8px; text-align:center;">✅ Run Logged at ${new Date(db.cartStates[cart.id].calledTime).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</div>` : ''}
+        <button class="btn-call" onclick="logEmergencyRun('${cart.id}')">Call Run</button>
                                     
                                     ${reqHTML}
                                     <button class="btn-complete" onclick="completeCart('${cart.id}', ${cart.photoRequired ? 'true' : 'false'})">✓ Complete</button>
@@ -621,6 +622,31 @@
                     showToast("Photo Attached!"); 
                 });
             }
+        }
+
+        function logEmergencyRun(cartId) {
+            // Get current state or create a blank one
+            let state = db.cartStates[cartId] || { status: 'Available' };
+            
+            // Stamp the time for the visual UI badge
+            state.calledTime = Date.now();
+            state.calledBy = currentUser ? currentUser.name : "Unknown";
+            db.cartStates[cartId] = state;
+
+            // Push the official CYA log to the history tab for management
+            db.history.unshift({
+                time: Date.now(),
+                action: "Emergency Run Logged",
+                cartName: cartId,
+                by: currentUser ? currentUser.name : "Unknown"
+            });
+
+            saveDB(); // Saves to Firebase
+            
+            // Re-render the screen so the green checkmark appears instantly!
+            // Note: Look at your 'setStat' function to see what render function it calls at the very end. 
+            // It's probably render(), renderFloors(), or init(). Add that exact function call right here!
+            location.reload(); // Temporary fallback: this will just refresh the page instantly to show the badge if you don't know the render function name.
         }
 
         function subTicket(id) {
