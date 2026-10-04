@@ -547,7 +547,7 @@
                                     ${badgeTxt} ${viewPicHTML}
                                     <br><small style="font-weight:normal; text-decoration:underline; cursor:pointer; display:inline-block; margin-top:8px;" onclick="undoStat('${cart.id}')">(Tap to Undo Status)</small>
                                 </div>
-                                <div class="action-group" style="display:${actDisp}; flex-direction:column; gap:10px;">
+                               
 
 ${(db.callLogs && db.callLogs[cart.id]) ? `<div style="color:#28a745; font-size:0.85rem; font-weight:bold; margin-bottom:8px; text-align:center;">✅ Run Logged at ${new Date(db.callLogs[cart.id]).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</div>` : ''}
                 <button class="btn-call" style="margin-bottom: 10px; width: 100%;" onclick="logEmergencyRun('${cart.id}')">Call Run</button>
@@ -570,7 +570,7 @@ ${(db.callLogs && db.callLogs[cart.id]) ? `<div style="color:#28a745; font-size:
                                         <input type="hidden" id="tk-pic-${cart.id}">
                                     </div>
 
-  ${(db.callLogs && db.callLogs[cart.id]) ? `<div style="color:#28a745; font-size:0.85rem; font-weight:bold; margin-bottom:8px; text-align:center;">✅ Run Logged at ${new Date(db.callLogs[cart.id]).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</div>` : ''}
+  
         
                                     
                                     ${reqHTML}
