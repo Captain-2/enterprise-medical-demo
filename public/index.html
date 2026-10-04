@@ -624,8 +624,7 @@
             }
         }
 
- function logEmergencyRun(cartId) {
-            // Create a separate tracking folder if it doesn't exist yet
+function logEmergencyRun(cartId) {
             if (!db.callLogs) db.callLogs = {};
             
             // Stamp the exact time in our new safe folder
@@ -635,6 +634,12 @@
             logAction("Emergency Run Called", cartId);
             
             saveDB(); 
+
+            // Wait 5 seconds (5000 milliseconds), then delete the stamp and update the screen
+            setTimeout(() => {
+                delete db.callLogs[cartId];
+                saveDB();
+            }, 5000);
         }
         function subTicket(id) {
             const desc = document.getElementById(`tk-desc-${id}`).value;
