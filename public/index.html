@@ -318,12 +318,14 @@
         const dbRef = firestore.collection('LinenData').doc('MasterApp');
 
         let db = { users: {}, unclaimed: [{ name: "Gary Weaver", role: "Admin" }], carts: [], cartStates: {}, tickets: [], history: [], lastReset: "" };
+        let isDataLoaded = false;
         let currentUser = null;
         let initialLoad = true;
         let cartToClose = null;
         let currentHistoryPage = 1;
         
         dbRef.onSnapshot((doc) => {
+            isDataLoaded = true;
             if (doc.exists) {
                 db = doc.data();
                 if(!db.history) db.history = [];
@@ -365,10 +367,13 @@
             alert("🔥 CLOUD CONNECTION ERROR: " + error.message);
         });
 
-        function saveDB() {
-            dbRef.set(db).catch(err => alert("🔥 SAVE ERROR: " + err.message));
-        }
-
+     function saveDB() {
+    if (!isDataLoaded) {
+        console.warn("Blocked a ghost wipe! Cloud data hasn't loaded yet.");
+        return; 
+    }
+    dbRef.set(db).catch(err => alert("🔥 SAVE ERROR: " + err.message));
+}
         function refreshUI() {
             if (document.getElementById('dashboard').classList.contains('active')) loadDashboard();
             if (document.getElementById('admin-portal').classList.contains('active')) renderPortal();
