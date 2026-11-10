@@ -4,23 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="theme-color" content="#005A9C">
-    <title>Crown Linen Tracker</title>
+    <title>Enterprise Medical Supply Tracker</title>
     
     <link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgZmlsbD0iI2ZmZmZmZiIgcng9IjIwIi8+PGxpbmUgeDE9IjUwIiB5MT0iNDAiIHgyPSI1MCIgeTI9IjE1IiBzdHJva2U9IiMxZTI5M2IiIHN0cm9rZS13aWR0aD0iNCIvPjxjaXJjbGUgY3g9IjUwIiBjeT0iMTIiIHI9IjYiIGZpbGw9IiNGMkE5MDAiLz48cmVjdCB4PSIyMCIgeT0iMzUiIHdpZHRoPSI2MCIgaGVpZ2h0PSI0NSIgZmlsbD0iIzAwNUE5QyIgcng9IjUiLz48cmVjdCB4PSIxNSIgeT0iMzUiIHdpZHRoPSI3MCIgaGVpZ2h0PSI4IiBmaWxsPSIjMWUyOTNiIiByeD0iMiIvPjxjaXJjbGUgY3g9IjM1IiBjeT0iODUiIHI9IjciIGZpbGw9IiMxZTI5M2IiLz48Y2lyY2xlIGN4PSI2NSIgY3k9Ijg1IiByPSI3IiBmaWxsPSIjMWUyOTNiIi8+PC9zdmc+">
     <link rel="apple-touch-icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgZmlsbD0iI2ZmZmZmZiIgcng9IjIwIi8+PGxpbmUgeDE9IjUwIiB5MT0iNDAiIHgyPSI1MCIgeTI9IjE1IiBzdHJva2U9IiMxZTI5M2IiIHN0cm9rZS13aWR0aD0iNCIvPjxjaXJjbGUgY3g9IjUwIiBjeT0iMTIiIHI9IjYiIGZpbGw9IiNGMkE5MDAiLz48cmVjdCB4PSIyMCIgeT0iMzUiIHdpZHRoPSI2MCIgaGVpZ2h0PSI0NSIgZmlsbD0iIzAwNUE5QyIgcng9IjUiLz48cmVjdCB4PSIxNSIgeT0iMzUiIHdpZHRoPSI3MCIgaGVpZ2h0PSI4IiBmaWxsPSIjMWUyOTNiIiByeD0iMiIvPjxjaXJjbGUgY3g9IjM1IiBjeT0iODUiIHI9IjciIGZpbGw9IiMxZTI5M2IiLz48Y2lyY2xlIGN4PSI2NSIgY3k9Ijg1IiByPSI3IiBmaWxsPSIjMWUyOTNiIi8+PC9zdmc+">
     
-    <script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-firestore-compat.js"></script>
-    
     <style>
         :root {
-            --crown-blue: #005A9C; --crown-gold: #F2A900; --stat-yellow: #FFC107;
+            --brand-blue: #005A9C; --brand-gold: #F2A900; --stat-yellow: #FFC107;
             --done-green: #28A745; --bg-color: #F0F4F8; --dark-bg: #1e293b; --danger: #dc3545;
         }
         * { box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
         body { margin: 0; padding: 0; background-color: var(--bg-color); }
         
-        .header { background-color: var(--crown-blue); padding: 20px 15px; display: flex; justify-content: center; align-items: center; border-bottom: 4px solid var(--crown-gold); position: relative; }
+        .header { background-color: var(--brand-blue); padding: 20px 15px; display: flex; justify-content: center; align-items: center; border-bottom: 4px solid var(--brand-gold); position: relative; }
         .gear-icon { font-size: 1.8rem; cursor: pointer; color: white; background: none; border: none; padding: 0; position: absolute; left: 15px; top: 20px;}
         .header-logout { background: white; color: var(--danger); font-weight: bold; border: none; padding: 8px 12px; border-radius: 8px; cursor: pointer; font-size: 0.95rem; position: absolute; right: 15px; top: 20px; }
 
@@ -33,33 +30,33 @@
         input, select, textarea { width: 100%; padding: 12px; font-size: 1rem; margin-bottom: 15px; border: 2px solid #ccc; border-radius: 8px; }
         .pin-input { font-size: 1.5rem; text-align: center; letter-spacing: 5px; }
         
-        .btn { background: var(--crown-blue); color: white; border: none; padding: 15px; font-size: 1.1rem; border-radius: 8px; cursor: pointer; width: 100%; font-weight: bold; margin-bottom: 10px;}
-        .btn-outline { background: transparent; color: var(--crown-blue); border: 2px solid var(--crown-blue); }
+        .btn { background: var(--brand-blue); color: white; border: none; padding: 15px; font-size: 1.1rem; border-radius: 8px; cursor: pointer; width: 100%; font-weight: bold; margin-bottom: 10px;}
+        .btn-outline { background: transparent; color: var(--brand-blue); border: 2px solid var(--brand-blue); }
         .btn-danger { background: var(--danger); color: white; border: none; padding: 10px; font-size: 1rem; border-radius: 8px; cursor: pointer; font-weight: bold; }
         
         #dashboard, #admin-portal { padding: 10px 15px; max-width: 800px; margin: 0 auto; }
         
         .user-bar { display: flex; justify-content: space-between; align-items: center; padding: 15px 5px; margin-bottom: 10px; }
         .user-name-group { display: flex; align-items: center; gap: 8px; font-size: 1.3rem; font-weight: 800; color: #111; }
-        .role-badge { background: var(--crown-gold); color: black; padding: 4px 8px; border-radius: 6px; font-size: 0.75rem; font-weight: 900; text-transform: uppercase; }
+        .role-badge { background: var(--brand-gold); color: black; padding: 4px 8px; border-radius: 6px; font-size: 0.75rem; font-weight: 900; text-transform: uppercase; }
         .admin-btn { background: var(--dark-bg); color: white; padding: 10px 15px; border-radius: 8px; font-weight: bold; border: none; cursor: pointer; font-size: 0.95rem;}
         
         .admin-badge-container { position: relative; }
         .notification-dot { position: absolute; top: -5px; right: -5px; background: red; color: white; border-radius: 50%; padding: 2px 6px; font-size: 0.7rem; font-weight: bold; display: none; }
         .has-tickets .notification-dot { display: block; }
 
-        .admin-section { background: white; padding: 20px; border-radius: 12px; margin-bottom: 20px; border-left: 5px solid var(--crown-gold); box-shadow: 0 2px 8px rgba(0,0,0,0.05);}
+        .admin-section { background: white; padding: 20px; border-radius: 12px; margin-bottom: 20px; border-left: 5px solid var(--brand-gold); box-shadow: 0 2px 8px rgba(0,0,0,0.05);}
         table { width: 100%; border-collapse: collapse; margin-bottom: 10px; min-width: 500px;}
         th, td { text-align: left; padding: 10px; border-bottom: 1px solid #ddd; }
 
         details { background: var(--dark-bg); border-radius: 12px; margin-bottom: 12px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); overflow: hidden; }
         summary { color: white; padding: 16px 20px; font-size: 1.15rem; font-weight: bold; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; }
         summary::-webkit-details-marker { display: none; }
-        summary::after { content: '▼'; font-size: 0.9rem; color: var(--crown-gold); }
+        summary::after { content: '▼'; font-size: 0.9rem; color: var(--brand-gold); }
         details[open] > summary::after { content: '▲'; }
         
         .cart-details { background: white; margin: 10px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
-        .cart-details > summary { background: white; color: var(--crown-blue); font-size: 1.1rem; border-bottom: 1px solid #f0f0f0; padding: 15px;}
+        .cart-details > summary { background: white; color: var(--brand-blue); font-size: 1.1rem; border-bottom: 1px solid #f0f0f0; padding: 15px;}
         .cart-content { padding: 15px; display: flex; flex-direction: column; gap: 10px; background: white;}
         
         .door-code-display { font-weight: bold; color: var(--danger); background: #fee; padding: 5px 10px; border-radius: 5px; display: inline-block; margin-bottom: 5px;}
@@ -85,7 +82,7 @@
     <div class="header">
         <button class="gear-icon" onclick="openSettings()" id="settings-btn" style="display:none;">⚙</button>
         
-<div style="display:flex; flex-direction:column; align-items:center;">
+        <div style="display:flex; flex-direction:column; align-items:center;">
             <svg viewBox="0 0 120 75" width="85" height="55" xmlns="http://www.w3.org/2000/svg" style="margin-bottom: 0px;">
                 <circle cx="15" cy="22" r="5.5" fill="#F2A900"/>
                 <circle cx="37.5" cy="12" r="5.5" fill="#F2A900"/>
@@ -95,8 +92,8 @@
                 <path d="M 15 28 L 27 45 L 37.5 18 L 49 40 L 60 13 L 71 40 L 82.5 18 L 93 45 L 105 28 L 95 58 Q 60 66 25 58 Z" fill="#F2A900"/>
                 <path d="M 23 64 Q 60 72 97 64 L 95 68 Q 60 76 25 68 Z" fill="#F2A900"/>
             </svg>
-            <h2 style="margin: 0; font-family: 'Times New Roman', Times, serif; font-size: 2.8rem; font-weight: normal; color: var(--crown-gold); letter-spacing: 2px; line-height: 0.9;">CROWN</h2>
-            <h1 style="margin: 8px 0 0 0; font-family: 'Arial', sans-serif; font-size: 1.05rem; font-weight: bold; text-transform: uppercase; letter-spacing: 1.5px; color: white; line-height: 1;">Greenville Memorial</h1>
+            <h2 style="margin: 0; font-family: 'Times New Roman', Times, serif; font-size: 2.8rem; font-weight: normal; color: var(--brand-gold); letter-spacing: 2px; line-height: 0.9;">ENTERPRISE</h2>
+            <h1 style="margin: 8px 0 0 0; font-family: 'Arial', sans-serif; font-size: 1.05rem; font-weight: bold; text-transform: uppercase; letter-spacing: 1.5px; color: white; line-height: 1;">Medical Center</h1>
         </div>
         
         <button class="header-logout" id="top-logout-btn" style="display:none;" onclick="logout()">Log Out</button>
@@ -133,10 +130,11 @@
             <h3>Edit Cart</h3>
             <input type="hidden" id="edit-cart-id">
             <select id="edit-cart-floor">
-                <option value="1st Floor">1st Floor</option><option value="2nd Floor">2nd Floor</option>
-                <option value="3rd Floor">3rd Floor</option><option value="4th Floor">4th Floor</option>
-                <option value="5th Floor">5th Floor</option><option value="6th Floor">6th Floor</option>
-                <option value="Scrubs">Scrubs</option>
+                <option value="Alpha Wing">Alpha Wing</option>
+                <option value="Beta Wing">Beta Wing</option>
+                <option value="Gamma Ward">Gamma Ward</option>
+                <option value="Delta ICU">Delta ICU</option>
+                <option value="General Processing">General Processing</option>
             </select>
             <input type="text" id="edit-cart-name" placeholder="Cart Name">
             <input type="text" id="edit-cart-door" placeholder="Door Code (Optional, e.g. 4312* or #99)">
@@ -155,7 +153,7 @@
 
     <div id="login-screen" class="screen center-screen">
         <div class="box-panel">
-            <h2 style="color: var(--crown-blue); margin-top: 0; font-family: 'Arial', sans-serif;">Enter PIN</h2>
+            <h2 style="color: var(--brand-blue); margin-top: 0; font-family: 'Arial', sans-serif;">Enter PIN</h2>
             <form onsubmit="attemptLogin(event)">
                 <input type="password" id="pin-input" class="pin-input" placeholder="****" inputmode="numeric">
                 <button type="submit" class="btn">LOGIN</button>
@@ -167,7 +165,7 @@
 
     <div id="setup-screen" class="screen center-screen">
         <div class="box-panel">
-            <h2 style="color: var(--crown-blue); margin-top: 0; font-family: 'Arial', sans-serif;">Claim Your Name</h2>
+            <h2 style="color: var(--brand-blue); margin-top: 0; font-family: 'Arial', sans-serif;">Claim Your Name</h2>
             <select id="claim-name-select"></select>
             <input type="password" id="claim-pin-input" class="pin-input" placeholder="Create 4-Digit PIN" inputmode="numeric">
             <button class="btn" onclick="claimAccount()">Lock Account</button>
@@ -191,7 +189,7 @@
 
     <div id="admin-portal" class="screen">
         <div class="user-bar" style="background:white; border-radius:12px; padding:15px; box-shadow:0 2px 5px rgba(0,0,0,0.05);">
-            <h2 style="margin:0; color:var(--crown-blue); font-size:1.3rem;">Admin Portal</h2>
+            <h2 style="margin:0; color:var(--brand-blue); font-size:1.3rem;">Admin Portal</h2>
             <button class="btn-outline" style="width:auto; padding:8px 12px; margin:0;" onclick="showScreen('dashboard')">Back</button>
         </div>
         
@@ -216,10 +214,11 @@
             <div style="background:#f8f9fa; padding:15px; border-radius:8px; border:1px solid #ddd; margin-bottom:15px;">
                 <div style="display:flex; gap:10px; flex-wrap:wrap; margin-bottom:10px;">
                     <select id="new-cart-floor" style="flex:1; min-width:110px;" onchange="renderPortal()">
-                        <option value="1st Floor">1st Floor</option><option value="2nd Floor">2nd Floor</option>
-                        <option value="3rd Floor">3rd Floor</option><option value="4th Floor">4th Floor</option>
-                        <option value="5th Floor">5th Floor</option><option value="6th Floor">6th Floor</option>
-                        <option value="Scrubs">Scrubs</option>
+                        <option value="Alpha Wing">Alpha Wing</option>
+                        <option value="Beta Wing">Beta Wing</option>
+                        <option value="Gamma Ward">Gamma Ward</option>
+                        <option value="Delta ICU">Delta ICU</option>
+                        <option value="General Processing">General Processing</option>
                     </select>
                     <input type="text" id="new-cart-name" placeholder="Cart Name" style="flex:2; margin:0; min-width:140px;">
                     <input type="text" id="new-cart-door" placeholder="Door Code (Opt)" style="flex:1; margin:0; min-width:100px;">
@@ -286,17 +285,8 @@
                 </div>
                 <div style="display:flex; justify-content:space-between; align-items:center; background:#f8f9fa; padding:10px; border-radius:8px; border:1px solid #ddd;">
                     <button class="btn-outline" style="width:auto; padding:6px 15px; margin:0;" onclick="changeHistoryPage(-1)">◀ Prev</button>
-                    <span id="history-page-info" style="font-weight:bold; color:var(--crown-blue);">Page 1 of 1</span>
+                    <span id="history-page-info" style="font-weight:bold; color:var(--brand-blue);">Page 1 of 1</span>
                     <button class="btn-outline" style="width:auto; padding:6px 15px; margin:0;" onclick="changeHistoryPage(1)">Next ▶</button>
-                </div>
-            </div>
-                <div style="max-height: 480px; overflow-y: auto; border: 1px solid #eee; border-radius: 8px;">
-                    <table style="margin:0; width:100%;">
-                        <thead style="position: sticky; top: 0; background: var(--dark-bg); color: white; z-index: 10;">
-                            <tr><th>Time</th><th>Action</th><th>Cart</th><th>Associate</th></tr>
-                        </thead>
-                        <tbody id="admin-history-list"></tbody>
-                    </table>
                 </div>
             </div>
             <div style="text-align:right;">
@@ -306,74 +296,76 @@
     </div>
 
     <script>
-        firebase.initializeApp({
-            apiKey: "AIzaSyC8qlpdXCU9pAiTdHLRz_rhYvKe3lShOI8",
-            authDomain: "crown-linen-cart-tracker.firebaseapp.com",
-            projectId: "crown-linen-cart-tracker",
-            storageBucket: "crown-linen-cart-tracker.firebasestorage.app",
-            messagingSenderId: "529043817553",
-            appId: "1:529043817553:web:80731fa47bb2698638a470"
-        });
-        const firestore = firebase.firestore();
-        const dbRef = firestore.collection('LinenData').doc('MasterApp');
+        const DEFAULT_DB = {
+            users: {},
+            unclaimed: [
+                { name: "Admin User", role: "Admin" },
+                { name: "Demo Manager", role: "Management" },
+                { name: "Demo Tech", role: "Associate" }
+            ],
+            carts: [
+                { id: "C101", floor: "Alpha Wing", name: "Test Cart 1", doorCode: "1234", photoRequired: false },
+                { id: "C102", floor: "Alpha Wing", name: "Demo Cart 2", doorCode: "", photoRequired: true },
+                { id: "C103", floor: "Beta Wing", name: "Beta Supply", doorCode: "#99", photoRequired: false },
+                { id: "C104", floor: "General Processing", name: "Bulk Linen Unit", doorCode: "", photoRequired: false }
+            ],
+            cartStates: {},
+            tickets: [],
+            history: [],
+            lastReset: ""
+        };
 
-        let db = { users: {}, unclaimed: [{ name: "Gary Weaver", role: "Admin" }], carts: [], cartStates: {}, tickets: [], history: [], lastReset: "" };
-        let isDataLoaded = false;
+        let db = null;
         let currentUser = null;
         let initialLoad = true;
         let cartToClose = null;
         let currentHistoryPage = 1;
-        
-        dbRef.onSnapshot((doc) => {
-            isDataLoaded = true;
-            if (doc.exists) {
-                db = doc.data();
-                if(!db.history) db.history = [];
-                if(!db.tickets) db.tickets = [];
-                if(!db.carts) db.carts = [];
-                if(!db.cartStates) db.cartStates = {};
-                cleanHistory();
 
-                const adjustedDate = new Date(Date.now() - (1 * 60 * 60 * 1000));
-                const currentShiftDay = adjustedDate.toLocaleDateString();
-                
-                if (db.lastReset !== currentShiftDay) {
-                    db.cartStates = {};
-                    db.lastReset = currentShiftDay;
-                    db.history.unshift({ action: "System Auto-Reset", cartName: "All Carts", by: "System", time: Date.now() });
-                    saveDB(); 
-                }
-
+        function initApp() {
+            const localData = localStorage.getItem('ems_db');
+            if (localData) {
+                db = JSON.parse(localData);
             } else {
+                db = JSON.parse(JSON.stringify(DEFAULT_DB));
+                saveDB();
+            }
+
+            if(!db.history) db.history = [];
+            if(!db.tickets) db.tickets = [];
+            if(!db.carts) db.carts = [];
+            if(!db.cartStates) db.cartStates = {};
+            cleanHistory();
+
+            const adjustedDate = new Date(Date.now() - (1 * 60 * 60 * 1000));
+            const currentShiftDay = adjustedDate.toLocaleDateString();
+            
+            if (db.lastReset !== currentShiftDay) {
+                db.cartStates = {};
+                db.lastReset = currentShiftDay;
+                db.history.unshift({ action: "System Auto-Reset", cartName: "All Carts", by: "System", time: Date.now() });
                 saveDB(); 
             }
-            
-            if (initialLoad) {
-                const session = JSON.parse(localStorage.getItem('crown_sess'));
-                if (session && (Date.now() - session.time) / 60000 < 120 && db.users && db.users[session.pin]) {
-                    currentUser = db.users[session.pin]; 
-                    currentUser.pin = session.pin;
-                    refreshSession(); 
-                    showScreen('dashboard');
-                } else {
-                    localStorage.removeItem('crown_sess');
-                    showScreen('login-screen');
-                }
-                initialLoad = false;
-            } else {
-                refreshUI();
-            }
-        }, (error) => {
-            alert("🔥 CLOUD CONNECTION ERROR: " + error.message);
-        });
 
-     function saveDB() {
-    if (!isDataLoaded) {
-        console.warn("Blocked a ghost wipe! Cloud data hasn't loaded yet.");
-        return; 
-    }
-    dbRef.set(db).catch(err => alert("🔥 SAVE ERROR: " + err.message));
-}
+            const session = JSON.parse(localStorage.getItem('ems_sess'));
+            if (session && (Date.now() - session.time) / 60000 < 120 && db.users && db.users[session.pin]) {
+                currentUser = db.users[session.pin]; 
+                currentUser.pin = session.pin;
+                refreshSession(); 
+                showScreen('dashboard');
+            } else {
+                localStorage.removeItem('ems_sess');
+                showScreen('login-screen');
+            }
+            initialLoad = false;
+        }
+
+        window.onload = initApp;
+
+        function saveDB() {
+            localStorage.setItem('ems_db', JSON.stringify(db));
+            if (!initialLoad) refreshUI();
+        }
+
         function refreshUI() {
             if (document.getElementById('dashboard').classList.contains('active')) loadDashboard();
             if (document.getElementById('admin-portal').classList.contains('active')) renderPortal();
@@ -409,7 +401,7 @@
         }
 
         function refreshSession() {
-            if (currentUser) localStorage.setItem('crown_sess', JSON.stringify({ pin: currentUser.pin, time: Date.now() }));
+            if (currentUser) localStorage.setItem('ems_sess', JSON.stringify({ pin: currentUser.pin, time: Date.now() }));
         }
 
         function attemptLogin(e) {
@@ -423,7 +415,7 @@
         }
 
         function logout() {
-            currentUser = null; localStorage.removeItem('crown_sess');
+            currentUser = null; localStorage.removeItem('ems_sess');
             showScreen('login-screen'); showToast("Logged out.");
         }
 
@@ -496,28 +488,27 @@
                 (db.tickets && db.tickets.length > 0) ? adminWrap.classList.add('has-tickets') : adminWrap.classList.remove('has-tickets');
             }
 
-            // STATE PRESERVATION: Memorize currently open menus
             let openDetails = [];
             document.querySelectorAll('details[open]').forEach(el => {
                 if(el.id) openDetails.push(el.id);
             });
 
             const container = document.getElementById('floor-container'); container.innerHTML = '';
-            const floors = ["1st Floor", "2nd Floor", "3rd Floor", "4th Floor", "5th Floor", "6th Floor", "Scrubs"];
+            const floors = ["Alpha Wing", "Beta Wing", "Gamma Ward", "Delta ICU", "General Processing"];
             
             floors.forEach(floor => {
                 let floorCarts = db.carts ? db.carts.filter(c => c.floor === floor) : [];
                 let safeFloorId = floor.replace(/\s+/g, '-');
 
-            let allCartsDone = floorCarts.length > 0 && floorCarts.every(c => 
-            db.cartStates[c.id]?.status === 'Complete' || db.cartStates[c.id]?.status === 'Completed'
-        );
-        let floorTitle = allCartsDone ? `✅ ${floor}` : floor;
-        let floorBg = allCartsDone ? `background-color: #198754; color: white;` : ``;    
+                let allCartsDone = floorCarts.length > 0 && floorCarts.every(c => 
+                    db.cartStates[c.id]?.status === 'Complete' || db.cartStates[c.id]?.status === 'Completed'
+                );
+                let floorTitle = allCartsDone ? `✅ ${floor}` : floor;
+                let floorBg = allCartsDone ? `background-color: #198754; color: white;` : ``;    
                 
                 let html = `<details id="floor-${safeFloorId}"><summary style="${floorBg}">${floorTitle} <span style="font-weight:normal; font-size:0.9rem; color:${allCartsDone ? '#e9ecef' : '#94a3b8'};">(${floorCarts.length} carts)</span></summary><div style="padding:10px; background:#f8fafc; border-bottom:1px solid #e2e8f0;">`;
                 
-                if(floorCarts.length === 0) html += `<p style="color:#64748b; text-align:center; margin:10px 0;">No carts on this floor.</p>`;
+                if(floorCarts.length === 0) html += `<p style="color:#64748b; text-align:center; margin:10px 0;">No carts in this location.</p>`;
                 
                 floorCarts.forEach(cart => {
                     const state = db.cartStates ? db.cartStates[cart.id] : null;
@@ -538,14 +529,14 @@
                         </div>
                     ` : '';
 
-  let isCartDone = (db.cartStates[cart.id]?.status === 'Complete' || db.cartStates[cart.id]?.status === 'Completed');
-        let cartTitle = isCartDone ? `✅ ${cart.name}` : cart.name;
-        let cartBg = isCartDone ? `background-color: #d1e7dd; color: #0f5132; font-weight: bold;` : ``;
+                    let isCartDone = (db.cartStates[cart.id]?.status === 'Complete' || db.cartStates[cart.id]?.status === 'Completed');
+                    let cartTitle = isCartDone ? `✅ ${cart.name}` : cart.name;
+                    let cartBg = isCartDone ? `background-color: #d1e7dd; color: #0f5132; font-weight: bold;` : ``;
 
-        html += `
-            <details class="cart-details" id="card-${cart.id}">
-            <summary style="${cartBg}">${cartTitle}</summary>
-            
+                    html += `
+                        <details class="cart-details" id="card-${cart.id}">
+                        <summary style="${cartBg}">${cartTitle}</summary>
+                        
                             <div class="cart-content">
                                 ${doorHTML}
                                 <div class="status-badge" style="display:${statDisp}; background:${bg}; color:${color};">
@@ -553,17 +544,16 @@
                                     <br><small style="font-weight:normal; text-decoration:underline; cursor:pointer; display:inline-block; margin-top:8px;" onclick="undoStat('${cart.id}')">(Tap to Undo Status)</small>
                                 </div>
                                
+                                ${(db.callLogs && db.callLogs[cart.id]) ? `<div style="color:#28a745; font-size:0.85rem; font-weight:bold; margin-bottom:8px; text-align:center;">✅ Run Logged at ${new Date(db.callLogs[cart.id]).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</div>` : ''}
+                                <button class="btn-call" style="margin-bottom: 10px; width: 100%; display:${actDisp}" onclick="logEmergencyRun('${cart.id}')">Call Run</button>
 
-${(db.callLogs && db.callLogs[cart.id]) ? `<div style="color:#28a745; font-size:0.85rem; font-weight:bold; margin-bottom:8px; text-align:center;">✅ Run Logged at ${new Date(db.callLogs[cart.id]).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</div>` : ''}
-                <button class="btn-call" style="margin-bottom: 10px; width: 100%;" onclick="logEmergencyRun('${cart.id}')">Call Run</button>
-
-                <div class="action-group" style="display:${actDisp}; flex-direction:column; gap:10px;">
+                                <div class="action-group" style="display:${actDisp}; flex-direction:column; gap:10px;">
                                     
                                     <button class="btn-report" onclick="document.getElementById('report-zone-${cart.id}').style.display='flex'; this.style.display='none';">⚠ Report Issue</button>
                                     
                                     <div id="report-zone-${cart.id}" style="display:none; flex-direction:column; gap:10px; background:#fff1f2; padding:15px; border-radius:8px; border:1px solid #fecdd3;">
                                         <div style="display:flex; gap:8px;">
-                                            <select id="tk-type-${cart.id}" style="margin:0; flex:1; border:1px solid #fda4af;"><option>Cart</option><option>Alex Machine</option></select>
+                                            <select id="tk-type-${cart.id}" style="margin:0; flex:1; border:1px solid #fda4af;"><option>Cart</option><option>Machine</option></select>
                                             <input type="text" id="tk-desc-${cart.id}" placeholder="What's broken?" style="margin:0; flex:2; border:1px solid #fda4af;">
                                         </div>
                                         <div style="display:flex; gap:8px;">
@@ -574,9 +564,6 @@ ${(db.callLogs && db.callLogs[cart.id]) ? `<div style="color:#28a745; font-size:
                                         </div>
                                         <input type="hidden" id="tk-pic-${cart.id}">
                                     </div>
-
-  
-        
                                     
                                     ${reqHTML}
                                     <button class="btn-complete" onclick="completeCart('${cart.id}', ${cart.photoRequired ? 'true' : 'false'})">✓ Complete</button>
@@ -587,14 +574,13 @@ ${(db.callLogs && db.callLogs[cart.id]) ? `<div style="color:#28a745; font-size:
                 container.innerHTML += html + `</div></details>`;
             });
 
-            // STATE RESTORATION: Re-open menus unless it's the specific cart we just completed
             openDetails.forEach(id => {
                 if (id !== cartToClose) {
                     const el = document.getElementById(id);
                     if(el) el.open = true;
                 }
             });
-            cartToClose = null; // Clear the targeted closer
+            cartToClose = null; 
         }
 
         function completeCart(id, requiresPhoto) {
@@ -622,7 +608,7 @@ ${(db.callLogs && db.callLogs[cart.id]) ? `<div style="color:#28a745; font-size:
         }
 
         function setStat(id, stat, pic = null) {
-            cartToClose = 'card-' + id; // Target this specific cart's menu to close
+            cartToClose = 'card-' + id;
             if(!db.cartStates) db.cartStates = {};
             db.cartStates[id] = { status: stat, by: currentUser.name, time: Date.now(), pic: pic };
             logAction(stat, id, pic); saveDB();
@@ -645,18 +631,12 @@ ${(db.callLogs && db.callLogs[cart.id]) ? `<div style="color:#28a745; font-size:
             }
         }
 
-function logEmergencyRun(cartId) {
+        function logEmergencyRun(cartId) {
             if (!db.callLogs) db.callLogs = {};
-            
-            // Stamp the exact time in our new safe folder
             db.callLogs[cartId] = Date.now();
-
-            // Send the log to history
             logAction("Emergency Run Called", cartId);
-            
             saveDB(); 
 
-            // Wait 5 seconds (5000 milliseconds), then delete the stamp and update the screen
             setTimeout(() => {
                 delete db.callLogs[cartId];
                 saveDB();
@@ -665,7 +645,7 @@ function logEmergencyRun(cartId) {
         function subTicket(id) {
             const desc = document.getElementById(`tk-desc-${id}`).value;
             if(!desc.trim()) return showToast("Type what is broken!", true);
-            cartToClose = 'card-' + id; // Target this specific cart's menu to close
+            cartToClose = 'card-' + id; 
             const cart = db.carts.find(c=>c.id===id);
             if(!db.tickets) db.tickets = [];
             db.tickets.push({
@@ -706,7 +686,7 @@ function logEmergencyRun(cartId) {
             if(db.carts) {
                 let filteredCarts = db.carts.filter(c => c.floor === selectedFloor);
                 filteredCarts.forEach((c) => {
-                    let reqBadge = c.photoRequired ? `<span style="background:var(--crown-gold); color:black; padding:2px 5px; border-radius:4px; font-size:0.7rem; font-weight:bold; margin-left:5px;">📸 REQ</span>` : '';
+                    let reqBadge = c.photoRequired ? `<span style="background:var(--brand-gold); color:black; padding:2px 5px; border-radius:4px; font-size:0.7rem; font-weight:bold; margin-left:5px;">📸 REQ</span>` : '';
                     cList.innerHTML += `<tr><td>${c.floor}</td><td>${c.name} ${reqBadge}</td><td>${c.doorCode||'-'}</td>
                     <td><button class="btn-stat" style="padding:5px; margin-bottom:5px;" onclick="openEditCart('${c.id}')">Edit</button> 
                     <button class="btn-danger" style="padding:5px; margin:0;" onclick="if(confirm('Delete Cart?')){db.carts = db.carts.filter(cart => cart.id !== '${c.id}'); saveDB();}">X</button></td></tr>`;
@@ -771,7 +751,7 @@ function logEmergencyRun(cartId) {
             saveDB(); document.getElementById('new-user-name').value='';
         }
 
-function renderHistory(resetPage = false) {
+        function renderHistory(resetPage = false) {
             if (resetPage) currentHistoryPage = 1;
             const term = document.getElementById('search-history').value.toLowerCase();
             const hours = parseInt(document.getElementById('filter-history').value);
@@ -806,8 +786,8 @@ function renderHistory(resetPage = false) {
         function executeNuke() {
             const pass = document.getElementById('nuke-pass').value;
             if(pass === 'qW4#vN!8xK$7mP@') {
-                db = { users: {}, unclaimed: [{ name: "Gary Weaver", role: "Admin" }], carts: [], cartStates: {}, tickets: [], history: [], lastReset: "" };
-                saveDB(); closeModal('nuke-modal'); logout(); showToast("DATABASE WIPED.");
+                db = JSON.parse(JSON.stringify(DEFAULT_DB));
+                saveDB(); closeModal('nuke-modal'); logout(); showToast("DATABASE RESET TO DEFAULT.");
             } else {
                 showToast("AUTHORIZATION DENIED.", true); document.getElementById('nuke-pass').value=''; closeModal('nuke-modal');
             }
